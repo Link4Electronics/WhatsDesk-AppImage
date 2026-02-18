@@ -40,14 +40,16 @@ echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
 cd ./whatsdesk
-npm install
 if [ "$ARCH" = "aarch64" ]; then
 ELECTRON_VER=$(cat /usr/lib/electron39/version | sed 's/v//')
 npx electron-builder --linux --arm64 \
   -c.electronDist=/usr/lib/electron39 \
   -c.electronVersion=$ELECTRON_VER
 #USE_SYSTEM_FPM=true npm run build
+sed -i 's/"files": \[/"files": \[\n      "electron-build\/**\/*",/' package.json
+sed -i 's/await CleanBuildDir();/\/\/ await CleanBuildDir();/g' build.js
 fi
+npm install
 #else
 npm run build
 #fi
