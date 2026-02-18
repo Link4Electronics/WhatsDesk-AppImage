@@ -46,6 +46,7 @@ npx electron-builder --linux --arm64 \
   -c.electronDist=/usr/lib/electron39 \
   -c.electronVersion=$ELECTRON_VER
 #USE_SYSTEM_FPM=true npm run build
+sed -i 's/"build": {/"build": {\n    "npmRebuild": true,\n    "nodeGypRebuild": false,/' package.json
 sed -i 's/"files": \[/"files": \[\n      "electron-build\/**\/*",/' package.json
 sed -i 's/await CleanBuildDir();/\/\/ await CleanBuildDir();/g' build.js
 fi
