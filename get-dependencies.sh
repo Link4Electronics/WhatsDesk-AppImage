@@ -16,7 +16,8 @@ pacman -Syu --noconfirm  \
 	nss      	         \
 	nspr		     	 \
 	pipewire-audio 		 \
-	pipewire-jack
+	pipewire-jack		 \
+	ruby
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
@@ -25,7 +26,7 @@ get-debloated-pkgs --add-common --prefer-nano
 # Comment this out if you need an AUR package
 #make-aur-package PACKAGENAME
 if [ "$ARCH" = "aarch64" ]; then
-	make-aur-package fpm
+	gem install fpm
 	export USE_SYSTEM_FPM=true
 	make-aur-package electron39-bin
 fi
