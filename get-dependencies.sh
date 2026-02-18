@@ -25,6 +25,9 @@ get-debloated-pkgs --add-common --prefer-nano
 # Comment this out if you need an AUR package
 #make-aur-package PACKAGENAME
 if [ "$ARCH" = "aarch64" ]; then
+	pacman -S ruby
+	gem install fpm
+	export USE_SYSTEM_FPM=true
 	make-aur-package electron39-bin
 fi
 # If the application needs to be manually built that has to be done down here
