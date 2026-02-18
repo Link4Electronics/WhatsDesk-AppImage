@@ -27,13 +27,14 @@ get-debloated-pkgs --add-common --prefer-nano
 if [ "${ARCH}" = x86_64 ]; then
 echo "Getting app..."
 echo "---------------------------------------------------------------"
-case "$ARCH" in # they use AMD64 for the deb links
-	x86_64)  deb_arch=amd64;;
-esac
-BASE_URL="https://zerkc.gitlab.io"
-DEB_FILENAME=$(curl -s $BASE_URL/ | grep -oP "whatsdesk_[\d\.]+_$ARCH\.deb" | head -n 1)
-DEB_LINK="$BASE_URL/$DEB_FILENAME"
-echo "$DEB_FILENAME" | sed -E "s/whatsdesk_(.*)_$ARCH\.deb/\1/" > ~/version
+#case "$ARCH" in # they use AMD64 for the deb links
+#	x86_64)  deb_arch=amd64;;
+#esac
+#BASE_URL="https://zerkc.gitlab.io"
+#DEB_FILENAME=$(curl -s $BASE_URL/ | grep -oP "whatsdesk_[\d\.]+_$ARCH\.deb" | head -n 1)
+#DEB_LINK="$BASE_URL/$DEB_FILENAME"
+DEB_LINK="https://zerkc.gitlab.io/whatsdesk/whatsdesk_0.3.12_amd64.deb"
+echo "$DEB_FILENAME" | sed -E "s/whatsdesk_(.*)_amd64\.deb/\1/" > ~/version
 if ! wget --retry-connrefused --tries=30 "$DEB_LINK" -O /tmp/app.deb 2>/tmp/download.log; then
 	cat /tmp/download.log
 	exit 1
