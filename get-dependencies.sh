@@ -41,6 +41,7 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./whatsdesk
 if [ "$ARCH" = "aarch64" ]; then
+rm -f whatsdesk/pnpm-lock.yaml
 ELECTRON_VER=$(cat /usr/lib/electron39/version | sed 's/v//')
 npx electron-builder --linux --arm64 \
   -c.electronDist=/usr/lib/electron39 \
