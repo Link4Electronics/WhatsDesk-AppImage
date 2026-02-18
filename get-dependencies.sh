@@ -40,5 +40,9 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./whatsdesk
 npm install
+if [ "$ARCH" = "aarch64" ]; then
+USE_SYSTEM_FPM=true npm run build
+else
 npm run build
+fi
 mv -v dist/linux-unpacked/* ../AppDir/bin
