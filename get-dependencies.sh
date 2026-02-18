@@ -16,8 +16,8 @@ pacman -Syu --noconfirm  \
 	nss      	         \
 	nspr		     	 \
 	pipewire-audio 		 \
-	pipewire-jack		 \
-	ruby
+	pipewire-jack
+	#ruby
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
@@ -26,8 +26,8 @@ get-debloated-pkgs --add-common --prefer-nano
 # Comment this out if you need an AUR package
 #make-aur-package PACKAGENAME
 if [ "$ARCH" = "aarch64" ]; then
-	gem install fpm
-	export USE_SYSTEM_FPM=true
+	#gem install fpm
+	#export USE_SYSTEM_FPM=true
 	make-aur-package electron39-bin
 fi
 # If the application needs to be manually built that has to be done down here
@@ -42,8 +42,13 @@ mkdir -p ./AppDir/bin
 cd ./whatsdesk
 npm install
 if [ "$ARCH" = "aarch64" ]; then
-USE_SYSTEM_FPM=true npm run build
-else
-npm run build
+ELECTRON_VER=$(cat /usr/lib/electron39/version | sed 's/v//')
+npx electron-builder --linux --arm64 \
+  -c.electronDist=/usr/lib/electron39 \
+  -c.electronVersion=$ELECTRON_VER
+#USE_SYSTEM_FPM=true npm run build
 fi
+#else
+npm run build
+#fi
 mv -v dist/linux-unpacked/* ../AppDir/bin
