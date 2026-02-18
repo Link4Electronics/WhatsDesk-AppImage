@@ -6,14 +6,15 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm \
-  nodejs \
-  libappindicator-gtk3 \
-  libnotify \
-  npm \
-	nss            \
-	nspr		   \
-	pipewire-audio \
+pacman -Syu --noconfirm  \
+	dbus-broker			 \
+ 	nodejs 				 \
+ 	libappindicator-gtk3 \
+	libnotify 			 \
+	npm 				 \
+	nss      	         \
+	nspr		     	 \
+	pipewire-audio 		 \
 	pipewire-jack
 
 echo "Installing debloated packages..."
@@ -58,6 +59,6 @@ else
     cd ./whatsdesk
     npm install
     npm run build
-    ls
+    cd dist
 
 fi
