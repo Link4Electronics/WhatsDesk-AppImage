@@ -46,9 +46,9 @@ ELECTRON_VER=$(cat /usr/lib/electron39/version | sed 's/v//')
 npx electron-builder --linux --arm64 \
   -c.electronDist=/usr/lib/electron39 \
   -c.electronVersion=$ELECTRON_VER
-sed -i 's/"build": {/"build": {\n    "npmRebuild": true,\n    "nodeGypRebuild": false,/' package.json
 sed -i 's/"main": .*/"main": "electron-build\/src\/index.js",/' package.json
-sed -i '/"files": \[/,/\]/c\    "files": ["**/*", "electron-build/**/*"],' package.json
+sed -i '/"files": \[/,/\]/d' package.json
+sed -i 's/await fs.rm/\/\/ await fs.rm/g' build.js
 sed -i 's/await CleanBuildDir();/\/\/ await CleanBuildDir();/g' build.js
 fi
 npm install
