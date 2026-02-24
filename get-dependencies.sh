@@ -35,12 +35,10 @@ echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
 cd ./whatsdesk
+npm install
+npm run build
 if [ "$ARCH" = "aarch64" ]; then
-	npm install
-	npm run build
 	mv -v dist/linux-arm64-unpacked/* ../AppDir/bin
 else
-	npm install
-	npm run build
 	mv -v dist/linux-unpacked/* ../AppDir/bin
 fi
