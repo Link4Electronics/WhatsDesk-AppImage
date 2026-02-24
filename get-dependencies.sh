@@ -36,7 +36,6 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./whatsdesk
 if [ "$ARCH" = "aarch64" ]; then
-	npm install electron --save-dev
 	npm install
 	npm run build
 	mv -v dist/linux-arm64-unpacked/* ../AppDir/bin
