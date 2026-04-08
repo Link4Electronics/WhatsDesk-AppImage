@@ -13,8 +13,6 @@ pacman -Syu --noconfirm  \
 	libxcrypt-compat	 \
 	libnotify 			 \
 	npm 				 \
-	nss      	         \
-	nspr		     	 \
 	pipewire-audio 		 \
 	pipewire-jack
 
